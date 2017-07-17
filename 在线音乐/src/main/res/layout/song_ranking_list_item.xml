@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:background="#ffffff"
+    android:descendantFocusability="blocksDescendants" >
+
+    <LinearLayout
+    android:layout_width="60dp"
+    android:layout_height="60dp"
+    >
+    <ImageView
+    android:id="@+id/song_image"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+        android:layout_margin="5dp" />
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_gravity="left">
+        <TextView
+            android:id="@+id/ranking_song_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:singleLine="true"
+            android:text="示例歌曲"
+            android:textColor="#000000" />
+        <TextView
+            android:id="@+id/ranking_singer_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:singleLine="true"
+            android:layout_below="@+id/ranking_song_name"
+            android:textColor="#000000"
+            android:text="匿名"
+            android:layout_marginTop="5dp" />
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="2">
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/net_list_btn"
+            android:id="@+id/downloadbty"
+            android:layout_margin="15dp" />
+    </LinearLayout>
+
+</LinearLayout>

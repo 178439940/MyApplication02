@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/MyApplication.iml" filepath="$PROJECT_DIR$/MyApplication.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/google音乐播放器/google音乐播放器.iml" filepath="$PROJECT_DIR$/google音乐播放器/google音乐播放器.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loginButtons/loginButtons.iml" filepath="$PROJECT_DIR$/loginButtons/loginButtons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/在线音乐/在线音乐.iml" filepath="$PROJECT_DIR$/在线音乐/在线音乐.iml" />
+    </modules>
+  </component>
+</project>
