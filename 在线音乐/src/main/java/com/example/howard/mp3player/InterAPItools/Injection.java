@@ -6,8 +6,12 @@ import android.webkit.WebSettings;
 
 import com.example.howard.mp3player.MyApplication;
 
+import java.io.IOException;
+
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -17,18 +21,59 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class Injection {
 
+//    public static OkHttpClient provideOkHttpClient() {
+//
+//        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+//        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+//
+//        Request request = new Request.Builder().url("").removeHeader("User-Agent").addHeader("User-Agent",
+//                getUserAgent(MyApplication.getInstance())).build();
+////        httpClient.newCall(request).enqueue();
+//        return new OkHttpClient.Builder()
+//                .addInterceptor(logging)
+//                .build();
+//    }
+
     public static OkHttpClient provideOkHttpClient() {
 
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 
-        Request request = new Request.Builder().url("").removeHeader("User-Agent").addHeader("User-Agent",
-                getUserAgent(MyApplication.getInstance())).build();
-//        httpClient.newCall(request).enqueue();
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        builder.addInterceptor(new okhttp3.Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                //初始化Request
+                Request original = chain.request();
+                Request.Builder requestBuilder = original.newBuilder()
+                        //设置成json的头
+                        .header("Content-Type", "application/json; charset=utf-8")//Content-Type : application/json; charset=utf-8
+                        .method(original.method(), original.body());
+                final Request request = requestBuilder
+                        .removeHeader("User-Agent")
+                        .addHeader("User-Agent",
+                                getUserAgent(MyApplication.getInstance()))
+                        .build();
 
-        return new OkHttpClient.Builder()
-                .addInterceptor(logging)
-                .build();
+
+//                Request request = new Request.Builder()
+//                        .url("http://tingapi.ting.baidu.com/")
+//                        .removeHeader("User-Agent")
+//                        .addHeader("User-Agent",
+//                                getUserAgent(MyApplication.getInstance())).build();
+                //返回Request对象
+                Response response = chain.proceed(request);
+
+                return response;
+            }
+        });
+
+        builder.addInterceptor(logging);
+        return builder.build();
+
+//        return new OkHttpClient.Builder()
+//                .addInterceptor(logging)
+//                .build();
     }
 
     public static Retrofit provideRetrofit() {
